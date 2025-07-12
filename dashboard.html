@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --eco-green: #4CAF50;
+            --soft-beige: #F5E8C7;
+            --natural-white: #F9F9F9;
+            --cool-blue: #2196F3;
+            --earth-green: #2E7D32;
+            --text-dark: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+            --success-green: #4CAF50;
+            --warning-orange: #FF9800;
+            --error-red: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--soft-beige), var(--natural-white));
+            min-height: 100vh;
+        }
+        
+        /* Header Section */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            color: var(--earth-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--eco-green);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .logout-btn {
+            background: var(--error-red);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* User Profile Section */
+        .profile-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-box {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .info-box h3 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .info-box p {
+            color: var(--earth-green);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .impact-summary {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .impact-summary h3 {
+            color: var(--earth-green);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .impact-summary p {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        /* Dashboard Sections */
+        .dashboard-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--earth-green);
+            font-weight: 600;
+        }
+        
+        .add-item-btn {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-item-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Item Cards */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .item-card {
+            background: var(--light-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--eco-green);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+        }
+        
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, var(--soft-beige), var(--natural-white));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .item-info {
+            padding: 20px;
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        
+        .item-category {
+            color: var(--eco-green);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .item-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .status-available {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+        
+        .status-swapped {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--warning-orange);
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: var(--cool-blue);
+            color: white;
+        }
+        
+        .edit-btn:hover {
+            background: #1976d2;
+        }
+        
+        .delete-btn {
+            background: var(--error-red);
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background: #d32f2f;
+        }
+        
+        .rate-btn {
+            background: var(--warning-orange);
+            color: white;
+        }
+        
+        .rate-btn:hover {
+            background: #f57c00;
+        }
+        
+        .view-btn {
+            background: var(--eco-green);
+            color: white;
+        }
+        
+        .view-btn:hover {
+            background: #388e3c;
+        }
+        
+        .swap-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .empty-state p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            background: var(--earth-green);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--eco-green);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+        
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn-primary {
+            background: var(--eco-green);
+            color: white;
+        }
+        
+        .modal-btn-secondary {
+            background: #ccc;
+            color: var(--text-dark);
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='landing.html'">
+                <h1>ReWear</h1>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="landing.html">Browse</a>
+                <a href="#listings">My Listings</a>
+                <a href="#purchases">My Purchases</a>
+            </nav>
+            
+            <div class="user-menu">
+                <div class="user-avatar" onclick="toggleUserMenu()">👤</div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- User Profile Section -->
+        <section class="profile-section">
+            <div class="profile-image">👤</div>
+            <div class="profile-info">
+                <div class="info-box">
+                    <h3>Name</h3>
+                    <p>Sarah Johnson</p>
+                </div>
+                <div class="info-box">
+                    <h3>Email</h3>
+                    <p>sarah@email.com</p>
+                </div>
+                <div class="info-box">
+                    <h3>Total Points</h3>
+                    <p>1,250</p>
+                </div>
+                <div class="info-box">
+                    <h3>Rating</h3>
+                    <p>4.8 ⭐</p>
+                </div>
+                <div class="impact-summary">
+                    <h3>🌱 Your Impact</h3>
+                    <p>You've saved 8kg of textile waste and helped 12 people find new clothes!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Listings Section -->
+        <section class="dashboard-section" id="listings">
+            <div class="section-header">
+                <h2 class="section-title">My Listings</h2>
+                <button class="add-item-btn" onclick="openAddItemModal()">
+                    <i class="fas fa-plus"></i> Add New Item
+                </button>
+            </div>
+            
+            <div class="items-grid" id="listingsGrid">
+                <div class="item-card" data-id="1">
+                    <div class="item-image">🧥</div>
+                    <div class="item-info">
+                        <h3 class="item-title">Blue Denim Jacket</h3>
+                        <p class="item-category">Men's Outerwear</p>
+                        <span class="item-status status-available">Available</span>
+                        <div class="item-actions">
+                            <button class="action-btn edit-btn" onclick="editItem(1)">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteItem(1)">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-card" data-id="2">
+                    <div class="item-image">👗</div>
+                    <div class="item-info">
+                        <h3 class="item-title">Summer Floral Dress</h3>
+                        <p class="item-category">Women's Dresses</p>
+                        <span class="item-status status-swapped">Swapped</span>
+                        <div class="item-actions">
+                            <button class="action-btn edit-btn" onclick="editItem(2)">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteItem(2)">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-card" data-id="3">
+                    <div class="item-image">👟</div>
+                    <div class="item-info">
+                        <h3 class="item-title">Comfortable Sneakers</h3>
+                        <p class="item-category">Footwear</p>
+                        <span class="item-status status-available">Available</span>
+                        <div class="item-actions">
+                            <button class="action-btn edit-btn" onclick="editItem(3)">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteItem(3)">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Purchases Section -->
+        <section class="dashboard-section" id="purchases">
+            <div class="section-header">
+                <h2 class="section-title">My Purchases</h2>
+            </div>
+            
+            <div class="items-grid" id="purchasesGrid">
+                <div class="item-card" data-id="4">
+                    <div class="item-image">👔</div>
+                    <div class="item-info">
+                        <h3 class="item-title">Business Shirt</h3>
+                        <p class="item-category">Men's Formal</p>
+                        <p class="swap-date">Swapped on: Dec 15, 2024</p>
+                        <div class="item-actions">
+                            <button class="action-btn rate-btn" onclick="rateItem(4)">
+                                <i class="fas fa-star"></i> Rate
+                            </button>
+                            <button class="action-btn view-btn" onclick="viewItemDetails(4)">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-card" data-id="5">
+                    <div class="item-image">👜</div>
+                    <div class="item-info">
+                        <h3 class="item-title">Leather Handbag</h3>
+                        <p class="item-category">Accessories</p>
+                        <p class="swap-date">Redeemed on: Dec 10, 2024</p>
+                        <div class="item-actions">
+                            <button class="action-btn rate-btn" onclick="rateItem(5)">
+                                <i class="fas fa-star"></i> Rate
+                            </button>
+                            <button class="action-btn view-btn" onclick="viewItemDetails(5)">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Add/Edit Item Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Add New Item</h2>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="itemForm">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemCategory">Category</label>
+                        <select id="itemCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="mens">Men's Clothing</option>
+                            <option value="womens">Women's Clothing</option>
+                            <option value="kids">Children's Clothing</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="outerwear">Outerwear</option>
+                            <option value="formal">Formal Wear</option>
+                            <option value="sports">Sports & Active</option>
+                            <option value="vintage">Vintage</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemSize">Size</label>
+                        <select id="itemSize" required>
+                            <option value="">Select Size</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemCondition">Condition</label>
+                        <select id="itemCondition" required>
+                            <option value="">Select Condition</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="itemDescription">Description</label>
+                        <textarea id="itemDescription" rows="4" placeholder="Describe your item..."></textarea>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="modal-btn modal-btn-secondary" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="modal-btn modal-btn-primary" id="submitBtn">Add Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openAddItemModal() {
+            document.getElementById('modalTitle').textContent = 'Add New Item';
+            document.getElementById('submitBtn').textContent = 'Add Item';
+            document.getElementById('itemForm').reset();
+            document.getElementById('itemModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('itemModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function editItem(itemId) {
+            document.getElementById('modalTitle').textContent = 'Edit Item';
+            document.getElementById('submitBtn').textContent = 'Update Item';
+            
+            // Populate form with item data (in real app, fetch from backend)
+            const itemCard = document.querySelector(`[data-id="${itemId}"]`);
+            const itemTitle = itemCard.querySelector('.item-title').textContent;
+            const itemCategory = itemCard.querySelector('.item-category').textContent;
+            
+            document.getElementById('itemName').value = itemTitle;
+            document.getElementById('itemCategory').value = getCategoryValue(itemCategory);
+            
+            document.getElementById('itemModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function getCategoryValue(categoryText) {
+            const categoryMap = {
+                "Men's Outerwear": "outerwear",
+                "Women's Dresses": "womens",
+                "Footwear": "shoes"
+            };
+            return categoryMap[categoryText] || "";
+        }
+        
+        function deleteItem(itemId) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                const itemCard = document.querySelector(`[data-id="${itemId}"]`);
+                itemCard.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => {
+                    itemCard.remove();
+                }, 300);
+            }
+        }
+        
+        function rateItem(itemId) {
+            alert(`Rating system for item ${itemId} - In a real app, this would open a rating modal`);
+        }
+        
+        function viewItemDetails(itemId) {
+            // Open item details in a new tab
+            window.open('item-detail.html', '_blank');
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+        
+        function toggleUserMenu() {
+            // In a real app, this would toggle a dropdown menu
+            alert('User menu - In a real app, this would show profile options');
+        }
+        
+        // Form submission
+        document.getElementById('itemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const itemName = document.getElementById('itemName').value;
+            const itemCategory = document.getElementById('itemCategory').value;
+            
+            // In a real app, this would send data to backend
+            console.log('Form submitted:', {
+                name: itemName,
+                category: itemCategory,
+                size: document.getElementById('itemSize').value,
+                condition: document.getElementById('itemCondition').value,
+                description: document.getElementById('itemDescription').value
+            });
+            
+            // Add new item to grid (simulate)
+            addItemToGrid(itemName, itemCategory);
+            
+            closeModal();
+            alert('Item added successfully!');
+        });
+        
+        function addItemToGrid(name, category) {
+            const grid = document.getElementById('listingsGrid');
+            const newId = Date.now(); // Simple ID generation
+            
+            const itemCard = document.createElement('div');
+            itemCard.className = 'item-card';
+            itemCard.setAttribute('data-id', newId);
+            
+            itemCard.innerHTML = `
+                <div class="item-image">👕</div>
+                <div class="item-info">
+                    <h3 class="item-title">${name}</h3>
+                    <p class="item-category">${getCategoryText(category)}</p>
+                    <span class="item-status status-available">Available</span>
+                    <div class="item-actions">
+                        <button class="action-btn edit-btn" onclick="editItem(${newId})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteItem(${newId})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            grid.appendChild(itemCard);
+        }
+        
+        function getCategoryText(categoryValue) {
+            const categoryMap = {
+                "mens": "Men's Clothing",
+                "womens": "Women's Clothing",
+                "kids": "Children's Clothing",
+                "shoes": "Footwear",
+                "accessories": "Accessories",
+                "outerwear": "Outerwear",
+                "formal": "Formal Wear",
+                "sports": "Sports & Active",
+                "vintage": "Vintage"
+            };
+            return categoryMap[categoryValue] || "Other";
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('itemModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Add fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: scale(1); }
+                to { opacity: 0; transform: scale(0.8); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize auth status and load user data
+        function loadUserData() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (!currentUser) {
+                alert('Please login to access your dashboard');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Update profile information
+            document.querySelector('.profile-image').textContent = currentUser.name.charAt(0).toUpperCase();
+            document.querySelector('.info-box:nth-child(1) p').textContent = currentUser.name;
+            document.querySelector('.info-box:nth-child(2) p').textContent = currentUser.email;
+            document.querySelector('.info-box:nth-child(3) p').textContent = currentUser.points;
+            document.querySelector('.info-box:nth-child(4) p').textContent = currentUser.rating + ' ⭐';
+            
+            // Update impact summary
+            const impactText = `You've saved ${currentUser.impact}kg of textile waste and helped ${currentUser.itemsSwapped} people find new clothes!`;
+            document.querySelector('.impact-summary p').textContent = impactText;
+        }
+        
+        // Initialize dashboard
+        loadUserData();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Sustainable Fashion Exchange Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --eco-green: #4CAF50;
+            --soft-beige: #F5E8C7;
+            --natural-white: #F9F9F9;
+            --cool-blue: #2196F3;
+            --earth-green: #2E7D32;
+            --text-dark: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--soft-beige), var(--natural-white));
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header Section */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        .logo h1 {
+            color: var(--earth-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 14px;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--eco-green);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--eco-green);
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=600&fit=crop&crop=center') center/cover;
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--earth-green);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-btn {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+        }
+        
+        .secondary-btn {
+            background: white;
+            color: var(--earth-green);
+            border: 2px solid var(--eco-green);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--earth-green);
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+        
+        .categories-container {
+            overflow-x: auto;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+        
+        .categories-grid {
+            display: flex;
+            gap: 20px;
+            min-width: max-content;
+            padding: 0 10px;
+        }
+        
+        .categories-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .categories-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .categories-grid::-webkit-scrollbar-thumb {
+            background: var(--eco-green);
+            border-radius: 4px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            min-width: 200px;
+            flex-shrink: 0;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--eco-green);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+        }
+        
+        .category-card.active {
+            border-color: var(--eco-green);
+            background: rgba(76, 175, 80, 0.05);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        }
+        
+        .category-card h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Featured Items Carousel */
+        .featured {
+            padding: 60px 20px;
+            background: var(--light-gray);
+        }
+        
+        .featured-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-behavior: smooth;
+        }
+        
+        .carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .carousel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .carousel::-webkit-scrollbar-thumb {
+            background: var(--eco-green);
+            border-radius: 4px;
+        }
+        
+        .product-card {
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, var(--soft-beige), var(--natural-white));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        
+        .product-category {
+            color: var(--eco-green);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-points {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--cool-blue);
+            font-weight: 500;
+        }
+        
+        /* Product Listings */
+        .products {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.05), rgba(33, 150, 243, 0.05));
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--earth-green);
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 40px 20px;
+            background: var(--earth-green);
+            color: white;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            opacity: 0.9;
+        }
+        
+        /* Item Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-header {
+            background: var(--earth-green);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .modal-image-section {
+            background: var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .modal-main-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, var(--soft-beige), var(--natural-white));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .modal-main-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .modal-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .modal-thumbnail {
+            width: 100%;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .modal-thumbnail:hover {
+            border-color: var(--eco-green);
+        }
+        
+        .modal-thumbnail.active {
+            border-color: var(--eco-green);
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .modal-product-title {
+            font-size: 2rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .modal-product-subtitle {
+            color: var(--cool-blue);
+            font-size: 1.1rem;
+        }
+        
+        .modal-availability {
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .modal-available {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+        
+        .modal-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .modal-spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-spec-item:last-child {
+            border-bottom: none;
+        }
+        
+        .modal-spec-label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .modal-spec-value {
+            color: #666;
+        }
+        
+        .modal-condition-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .modal-condition-excellent {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+        
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .modal-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--eco-green);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .modal-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+        }
+        
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .modal-btn-secondary {
+            background: white;
+            color: var(--eco-green);
+            border: 2px solid var(--eco-green);
+        }
+        
+        .modal-btn-secondary:hover {
+            background: var(--eco-green);
+            color: white;
+        }
+        
+        .modal-uploader {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .modal-uploader-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-uploader-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .modal-uploader-details h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .modal-uploader-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .modal-stars {
+            color: #FFD700;
+        }
+        
+        .modal-rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .modal-content {
+                margin: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='#home'" >
+                
+                <h1>ReWear</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for clothing items...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#browse">Browse</a>
+                <a href="index.html" id="loginLink">Login</a>
+                <a href="index.html" class="cta-btn" id="signupLink">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Swap Don't Shop</h1>
+            <p>Join the sustainable fashion revolution. Exchange your unused clothes with others, earn points, and help reduce textile waste while building a circular fashion community.</p>
+            <div class="hero-buttons">
+                <a href="#browse" class="hero-btn primary-btn">Start Swapping</a>
+                <a href="#browse" class="hero-btn secondary-btn">Browse Items</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2 class="section-title">Browse by Category</h2>
+        <div class="categories-container">
+            <div class="categories-grid">
+                <div class="category-card" data-category="all">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>All Items</h3>
+                    <p>Browse everything</p>
+                </div>
+                <div class="category-card" data-category="mens">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Men's Clothing</h3>
+                    <p>Shirts, pants, jackets</p>
+                </div>
+                <div class="category-card" data-category="womens">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Women's Clothing</h3>
+                    <p>Dresses, tops, skirts</p>
+                </div>
+                <div class="category-card" data-category="kids">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Children's Clothing</h3>
+                    <p>Kids & Baby items</p>
+                </div>
+                <div class="category-card" data-category="shoes">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Shoes</h3>
+                    <p>All types of footwear</p>
+                </div>
+                <div class="category-card" data-category="accessories">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Accessories</h3>
+                    <p>Bags, jewelry, hats</p>
+                </div>
+                <div class="category-card" data-category="outerwear">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Outerwear</h3>
+                    <p>Coats, jackets, sweaters</p>
+                </div>
+                <div class="category-card" data-category="formal">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1593030761757-71cae45d48e7?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Formal Wear</h3>
+                    <p>Business & formal attire</p>
+                </div>
+                <div class="category-card" data-category="sports">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Sports & Active</h3>
+                    <p>Athletic wear & gear</p>
+                </div>
+                <div class="category-card" data-category="vintage">
+                    <div class="category-icon" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=120&h=120&fit=crop&crop=center')"></div>
+                    <h3>Vintage</h3>
+                    <p>Retro & classic pieces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Items Carousel -->
+    <section class="featured">
+        <div class="featured-container">
+            <h2 class="section-title">Featured Items</h2>
+            <div class="carousel">
+                <div class="product-card" data-category="outerwear">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Vintage Denim Jacket</h3>
+                        <p class="product-category">Men's Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>150 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="womens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Summer Floral Dress</h3>
+                        <p class="product-category">Women's Dresses</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>200 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="shoes">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Comfortable Sneakers</h3>
+                        <p class="product-category">Footwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>180 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Leather Handbag</h3>
+                        <p class="product-category">Accessories</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>120 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="kids">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kids Winter Jacket</h3>
+                        <p class="product-category">Children's Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>100 points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Listings Section -->
+    <section class="products" id="browse">
+        <div class="products-container">
+            <h2 class="section-title">Latest Items</h2>
+            <div class="products-grid">
+                <div class="product-card" data-category="formal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1593030761757-71cae45d48e7?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Business Shirt</h3>
+                        <p class="product-category">Men's Formal</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>100 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="formal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Suit Jacket</h3>
+                        <p class="product-category">Men's Formal</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>250 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="formal">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Dress Shirt</h3>
+                        <p class="product-category">Men's Formal</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>120 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="mens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Fit Jeans</h3>
+                        <p class="product-category">Men's Pants</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>130 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="mens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Graphic T-Shirt</h3>
+                        <p class="product-category">Casual Wear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>80 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="mens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Casual Shirt</h3>
+                        <p class="product-category">Men's Casual</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>90 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="vintage">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Traditional Kimono</h3>
+                        <p class="product-category">Japanese Cultural</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>300 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="vintage">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Vintage Denim Jacket</h3>
+                        <p class="product-category">Retro Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>200 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="womens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Evening Gown</h3>
+                        <p class="product-category">Women's Formal</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>400 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="womens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Summer Dress</h3>
+                        <p class="product-category">Women's Casual</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>150 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="womens">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1434389677669-e08b4c3e14b8?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Blouse</h3>
+                        <p class="product-category">Women's Top</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>110 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="sports">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Running Shoes</h3>
+                        <p class="product-category">Athletic Footwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>160 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="sports">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Athletic Shorts</h3>
+                        <p class="product-category">Sports Wear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>70 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="sports">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sports Jersey</h3>
+                        <p class="product-category">Athletic Wear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>85 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="shoes">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Comfortable Sneakers</h3>
+                        <p class="product-category">Footwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>180 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="shoes">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Formal Shoes</h3>
+                        <p class="product-category">Men's Footwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>220 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="shoes">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">High Heels</h3>
+                        <p class="product-category">Women's Footwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>190 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Leather Handbag</h3>
+                        <p class="product-category">Accessories</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>120 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Designer Watch</h3>
+                        <p class="product-category">Jewelry</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>350 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="accessories">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Stylish Hat</h3>
+                        <p class="product-category">Headwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>60 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="outerwear">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Denim Jacket</h3>
+                        <p class="product-category">Men's Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>150 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="outerwear">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Winter Coat</h3>
+                        <p class="product-category">Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>250 points</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="outerwear">
+                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=500&h=400&fit=crop&crop=center')"></div>
+                    <div class="product-info">
+                        <h3 class="product-title">Kids Winter Jacket</h3>
+                        <p class="product-category">Children's Outerwear</p>
+                        <div class="product-points">
+                            <i class="fas fa-star"></i>
+                            <span>100 points</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Community Says</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=160&h=160&fit=crop&crop=face')"></div>
+                    <p class="testimonial-text">"ReWear has completely changed how I think about fashion. I've found amazing pieces and given new life to clothes I no longer wear. It's a win-win for everyone!"</p>
+                    <p class="testimonial-author">- Sarah M.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face')"></div>
+                    <p class="testimonial-text">"The point system is brilliant! I've earned enough points to get clothes for my entire family. It's sustainable and economical."</p>
+                    <p class="testimonial-author">- Mike R.</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&h=160&fit=crop&crop=face')"></div>
+                    <p class="testimonial-text">"Finally, a platform that makes sustainable fashion accessible and fun. The community is amazing and the quality of items is outstanding."</p>
+                    <p class="testimonial-author">- Emma L.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>10,000+</h3>
+                <p>Items Swapped</p>
+            </div>
+            <div class="stat-item">
+                <h3>5,000+</h3>
+                <p>Happy Members</p>
+            </div>
+            <div class="stat-item">
+                <h3>5 Tons</h3>
+                <p>Textile Waste Saved</p>
+            </div>
+            <div class="stat-item">
+                <h3>50,000+</h3>
+                <p>Points Redeemed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Item Details</h2>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-section">
+                    <div class="modal-main-image" id="modalMainImage" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=600&fit=crop&crop=center')">
+                    </div>
+                    <div class="modal-thumbnails">
+                        <div class="modal-thumbnail active" onclick="changeModalImage('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=120&h=120&fit=crop&crop=center', this)" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=120&h=120&fit=crop&crop=center')">
+                        </div>
+                        <div class="modal-thumbnail" onclick="changeModalImage('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=120&h=120&fit=crop&crop=center', this)" style="background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=120&h=120&fit=crop&crop=center')">
+                        </div>
+                        <div class="modal-thumbnail" onclick="changeModalImage('https://images.unsplash.com/photo-1542272604-787c3835535d?w=120&h=120&fit=crop&crop=center', this)" style="background-image: url('https://images.unsplash.com/photo-1542272604-787c3835535d?w=120&h=120&fit=crop&crop=center')">
+                        </div>
+                        <div class="modal-thumbnail" onclick="changeModalImage('https://images.unsplash.com/photo-1593030761757-71cae45d48e7?w=120&h=120&fit=crop&crop=center', this)" style="background-image: url('https://images.unsplash.com/photo-1593030761757-71cae45d48e7?w=120&h=120&fit=crop&crop=center')">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-details">
+                    <h1 class="modal-product-title" id="modalProductTitle">Blue Denim Jacket</h1>
+                    <p class="modal-product-subtitle" id="modalProductSubtitle">Vintage Style • Men's Outerwear</p>
+                    
+                    <div class="modal-availability modal-available">
+                        <i class="fas fa-check-circle"></i> Available for Swap
+                    </div>
+                    
+                    <div class="modal-specs">
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Size</span>
+                            <span class="modal-spec-value">Large (L)</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Brand</span>
+                            <span class="modal-spec-value">Levi's</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Type</span>
+                            <span class="modal-spec-value">Outerwear</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Condition</span>
+                            <span class="modal-spec-value">
+                                <span class="modal-condition-badge modal-condition-excellent">Excellent</span>
+                            </span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Material</span>
+                            <span class="modal-spec-value">100% Cotton Denim</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Color</span>
+                            <span class="modal-spec-value">Blue</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Age</span>
+                            <span class="modal-spec-value">2 years old</span>
+                        </div>
+                        <div class="modal-spec-item">
+                            <span class="modal-spec-label">Points Value</span>
+                            <span class="modal-spec-value">150 points</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-tags">
+                        <span class="modal-tag">Vintage</span>
+                        <span class="modal-tag">Denim</span>
+                        <span class="modal-tag">Casual</span>
+                        <span class="modal-tag">Winter</span>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn modal-btn-primary" onclick="requestSwap()">
+                            <i class="fas fa-exchange-alt"></i> Request Swap
+                        </button>
+                        <button class="modal-btn modal-btn-secondary" onclick="redeemWithPoints()">
+                            <i class="fas fa-star"></i> Redeem with Points (150)
+                        </button>
+                    </div>
+                    
+                    <div class="modal-uploader">
+                        <div class="modal-uploader-header">
+                            <div class="modal-uploader-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face')"></div>
+                            <div class="modal-uploader-details">
+                                <h4>Sarah M.</h4>
+                                <div class="modal-uploader-rating">
+                                    <div class="modal-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="modal-rating-text">(4.8/5)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: #666; font-size: 0.9rem;">
+                            "This jacket has been well cared for and is in excellent condition. 
+                            Perfect for casual outings and has a great vintage feel."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                // Implement search functionality
+                console.log('Searching for:', this.value);
+            }
+        });
+
+        // Category card click handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                const categoryName = this.querySelector('h3').textContent;
+                
+                // Update active category card
+                document.querySelectorAll('.category-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Filter products based on category
+                filterProducts(category);
+                
+                // Scroll to products section
+                document.getElementById('browse').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+        
+        // Filter products function
+        function filterProducts(category) {
+            const allProducts = document.querySelectorAll('.product-card');
+            
+            allProducts.forEach(product => {
+                const productCategory = product.getAttribute('data-category');
+                
+                if (category === 'all' || productCategory === category) {
+                    product.style.display = 'block';
+                    product.style.animation = 'fadeIn 0.5s ease-out';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            
+            // Update section title to show filtered results
+            const sectionTitle = document.querySelector('#browse .section-title');
+            if (category === 'all') {
+                sectionTitle.textContent = 'Latest Items';
+            } else {
+                const categoryCard = document.querySelector(`[data-category="${category}"]`);
+                const categoryName = categoryCard.querySelector('h3').textContent;
+                sectionTitle.textContent = `${categoryName} Items`;
+            }
+        }
+
+        // Product card click handlers
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Open item details in a new tab
+                window.open('item-detail.html', '_blank');
+            });
+        });
+        
+        // Modal functionality
+        function openModal() {
+            document.getElementById('itemModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeModal() {
+            document.getElementById('itemModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        function changeModalImage(imageUrl, thumbnail) {
+            const modalMainImage = document.getElementById('modalMainImage');
+            
+            // Update main image
+            modalMainImage.style.backgroundImage = `url('${imageUrl}')`;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.modal-thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+        
+        function updateModalContent(title, category, points, imageUrl) {
+            // Update modal title and subtitle
+            document.getElementById('modalProductTitle').textContent = title;
+            document.getElementById('modalProductSubtitle').textContent = category;
+            
+            // Update modal main image
+            document.getElementById('modalMainImage').style.backgroundImage = `url('${imageUrl}')`;
+            
+            // Update first thumbnail
+            const firstThumbnail = document.querySelector('.modal-thumbnail');
+            firstThumbnail.style.backgroundImage = `url('${imageUrl}')`;
+            firstThumbnail.classList.add('active');
+            
+            // Update points value in the redeem button
+            const pointsValue = points.replace(' points', '');
+            const redeemButton = document.querySelector('.modal-btn-secondary');
+            redeemButton.innerHTML = `<i class="fas fa-star"></i> Redeem with Points (${pointsValue})`;
+            
+            // Update points value in specs
+            const pointsSpec = document.querySelector('.modal-spec-item:last-child .modal-spec-value');
+            pointsSpec.textContent = points;
+        }
+        
+        function requestSwap() {
+            alert('Swap request sent! The uploader will be notified of your interest.');
+        }
+        
+        function redeemWithPoints() {
+            alert('Item redeemed with points! You will receive a confirmation email.');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('itemModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Check authentication status and update navigation
+        function checkAuthStatus() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (currentUser) {
+                // User is logged in
+                navLinks.innerHTML = `
+                    <a href="#home">Home</a>
+                    <a href="#browse">Browse</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" onclick="logout()" class="cta-btn">Logout</a>
+                `;
+                
+                // Update hero buttons for logged in users
+                const heroButtons = document.querySelector('.hero-buttons');
+                if (heroButtons) {
+                    heroButtons.innerHTML = `
+                        <a href="#browse" class="hero-btn primary-btn">Start Swapping</a>
+                        <a href="dashboard.html" class="hero-btn secondary-btn">My Dashboard</a>
+                    `;
+                }
+            } else {
+                // User is not logged in
+                navLinks.innerHTML = `
+                    <a href="#home">Home</a>
+                    <a href="#browse">Browse</a>
+                    <a href="index.html" id="loginLink">Login</a>
+                    <a href="index.html" class="cta-btn" id="signupLink">Sign Up</a>
+                `;
+            }
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('userLoggedIn');
+                alert('Logged out successfully!');
+                window.location.reload();
+            }
+        }
+        
+        // Initialize auth status
+        checkAuthStatus();
+        
+        // Add admin login link for testing
+        const adminLink = document.createElement('a');
+        adminLink.href = 'admin-login.html';
+        adminLink.textContent = 'Admin';
+        adminLink.style.cssText = 'color: var(--text-dark); text-decoration: none; font-weight: 500; transition: color 0.3s ease;';
+        adminLink.addEventListener('mouseenter', function() {
+            this.style.color = 'var(--eco-green)';
+        });
+        adminLink.addEventListener('mouseleave', function() {
+            this.style.color = 'var(--text-dark)';
+        });
+        document.querySelector('.nav-links').appendChild(adminLink);
+    </script>
+</body>
+</html> 

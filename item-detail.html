@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Denim Jacket - ReWear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --eco-green: #4CAF50;
+            --soft-beige: #F5E8C7;
+            --natural-white: #F9F9F9;
+            --cool-blue: #2196F3;
+            --earth-green: #2E7D32;
+            --text-dark: #333333;
+            --light-gray: #F5F5F5;
+            --border-color: #E0E0E0;
+            --success-green: #4CAF50;
+            --warning-orange: #FF9800;
+            --error-red: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--soft-beige), var(--natural-white));
+            min-height: 100vh;
+        }
+        
+        /* Header Section */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            color: var(--earth-green);
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 14px;
+            background: var(--light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--eco-green);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--eco-green);
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            margin-top: 80px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .breadcrumb a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--eco-green);
+        }
+        
+        .breadcrumb span {
+            margin: 0 10px;
+            color: #999;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        /* Image Gallery Section */
+        .image-gallery {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, var(--soft-beige), var(--natural-white));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .thumbnail:hover {
+            border-color: var(--eco-green);
+            transform: scale(1.05);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--eco-green);
+            background: rgba(76, 175, 80, 0.1);
+        }
+        
+        /* Product Details Section */
+        .product-details {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .product-subtitle {
+            color: var(--cool-blue);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .product-specs {
+            margin-bottom: 30px;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .spec-value {
+            color: #666;
+        }
+        
+        .condition-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .condition-excellent {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+        
+        .condition-good {
+            background: rgba(255, 152, 0, 0.1);
+            color: var(--warning-orange);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        
+        .tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--eco-green);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--eco-green);
+            border: 2px solid var(--eco-green);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--eco-green);
+            color: white;
+        }
+        
+        .btn-disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .availability-status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .status-available {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-green);
+        }
+        
+        .status-unavailable {
+            background: rgba(244, 67, 54, 0.1);
+            color: var(--error-red);
+        }
+        
+        /* Uploader Info */
+        .uploader-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+        
+        .uploader-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .uploader-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--eco-green), var(--cool-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .uploader-details h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .uploader-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stars {
+            color: #FFD700;
+        }
+        
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+                margin: 0;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .product-title {
+                font-size: 1.5rem;
+            }
+            
+            .thumbnail-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Modal for Image Zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="window.location.href='mainlanding.html'">
+                <h1>ReWear</h1>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for clothing items...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="mainlanding.html">Home</a>
+                <a href="mainlanding.html#browse">Browse</a>
+                <a href="index.html" id="loginLink">Login</a>
+                <a href="index.html" class="cta-btn" id="signupLink">Sign Up</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <a href="mainlanding.html">Home</a>
+        <span>/</span>
+        <a href="mainlanding.html#browse">Browse</a>
+        <span>/</span>
+        <a href="#">Men's Outerwear</a>
+        <span>/</span>
+        <span>Blue Denim Jacket</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Image Gallery Section -->
+        <div class="image-gallery">
+            <div class="main-image" onclick="openModal()">
+                🧥
+            </div>
+            <div class="thumbnail-gallery">
+                <div class="thumbnail active" onclick="changeMainImage('🧥', this)">
+                    🧥
+                </div>
+                <div class="thumbnail" onclick="changeMainImage('👕', this)">
+                    👕
+                </div>
+                <div class="thumbnail" onclick="changeMainImage('👖', this)">
+                    👖
+                </div>
+                <div class="thumbnail" onclick="changeMainImage('👔', this)">
+                    👔
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="product-details">
+            <h1 class="product-title">Blue Denim Jacket</h1>
+            <p class="product-subtitle">Vintage Style • Men's Outerwear</p>
+            
+            <div class="availability-status status-available">
+                <i class="fas fa-check-circle"></i> Available for Swap
+            </div>
+            
+            <div class="product-specs">
+                <div class="spec-item">
+                    <span class="spec-label">Size</span>
+                    <span class="spec-value">Large (L)</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Brand</span>
+                    <span class="spec-value">Levi's</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Type</span>
+                    <span class="spec-value">Outerwear</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Condition</span>
+                    <span class="spec-value">
+                        <span class="condition-badge condition-excellent">Excellent</span>
+                    </span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Material</span>
+                    <span class="spec-value">100% Cotton Denim</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Color</span>
+                    <span class="spec-value">Blue</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Age</span>
+                    <span class="spec-value">2 years old</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Points Value</span>
+                    <span class="spec-value">150 points</span>
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">Vintage</span>
+                <span class="tag">Denim</span>
+                <span class="tag">Casual</span>
+                <span class="tag">Winter</span>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="requestSwap()">
+                    <i class="fas fa-exchange-alt"></i> Request Swap
+                </button>
+                <button class="btn btn-secondary" onclick="redeemWithPoints()">
+                    <i class="fas fa-star"></i> Redeem with Points (150)
+                </button>
+            </div>
+            
+            <!-- Uploader Info -->
+            <div class="uploader-info">
+                <div class="uploader-header">
+                    <div class="uploader-avatar">👤</div>
+                    <div class="uploader-details">
+                        <h4>Sarah M.</h4>
+                        <div class="uploader-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">(4.8/5)</span>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #666; font-size: 0.9rem;">
+                    "This jacket has been well cared for and is in excellent condition. 
+                    Perfect for casual outings and has a great vintage feel."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalImage" style="font-size: 8rem; text-align: center; padding: 40px;">
+                🧥
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Image gallery functionality
+        function changeMainImage(emoji, thumbnail) {
+            const mainImage = document.querySelector('.main-image');
+            const modalImage = document.getElementById('modalImage');
+            
+            // Update main image
+            mainImage.textContent = emoji;
+            
+            // Update modal image
+            modalImage.textContent = emoji;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+        
+        // Modal functionality
+        function openModal() {
+            document.getElementById('imageModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Action button functionality
+        function requestSwap() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (!currentUser) {
+                alert('Please login to request a swap');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            alert('Swap request sent! The uploader will be notified of your interest.');
+        }
+        
+        function redeemWithPoints() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (!currentUser) {
+                alert('Please login to redeem items with points');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const pointsRequired = 150;
+            
+            if (currentUser.points >= pointsRequired) {
+                // Update user points
+                currentUser.points -= pointsRequired;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                alert(`Item redeemed with ${pointsRequired} points! You will receive a confirmation email.`);
+            } else {
+                alert(`You need ${pointsRequired} points to redeem this item. You currently have ${currentUser.points} points.`);
+            }
+        }
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                console.log('Searching for:', this.value);
+                // Implement search functionality
+            }
+        });
+        
+        // Breadcrumb navigation
+        document.querySelectorAll('.breadcrumb a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href && href !== '#') {
+                    window.location.href = href;
+                }
+            });
+        });
+        
+        // Check authentication status and update navigation
+        function checkAuthStatus() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (currentUser) {
+                // User is logged in
+                navLinks.innerHTML = `
+                    <a href="mainlanding.html">Home</a>
+                    <a href="mainlanding.html#browse">Browse</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="#" onclick="logout()" class="cta-btn">Logout</a>
+                `;
+            } else {
+                // User is not logged in
+                navLinks.innerHTML = `
+                    <a href="mainlanding.html">Home</a>
+                    <a href="mainlanding.html#browse">Browse</a>
+                    <a href="index.html" id="loginLink">Login</a>
+                    <a href="index.html" class="cta-btn" id="signupLink">Sign Up</a>
+                `;
+            }
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                alert('Logged out successfully!');
+                window.location.href = 'mainlanding.html';
+            }
+        }
+        
+        // Initialize auth status
+        checkAuthStatus();
+    </script>
+</body>
+</html> 
