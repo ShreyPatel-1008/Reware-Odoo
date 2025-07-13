@@ -1,3 +1,15 @@
+# Team-Elite-Force-Odoo
+
+problem statement 3 : ReWear – Community Clothing Exchange 
+
+Team members:-
+1.Shrey patel : shreypatel4307@gmail.com
+2.Neeraj rathore : neerajrathore5821@gmail.com
+3.om panchal : panchalom136@gmail.com 
+4.shiv prajapati : shivkumarprajapati.23.cse@iite.indusuni.ac.in
+
+
+
 # ReWear - Sustainable Fashion Exchange Platform
 
 A complete web application for sustainable clothing exchange where users can swap unused clothes or redeem them through a point system.
